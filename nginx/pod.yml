@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: nginx
+spec:
+  containers:
+  - name: nginx-container       #there can be multiple containers in a pod
+    image: nginx:latest
+    ports:
+    - containerPort: 80         #there can be multiple ports in a container
