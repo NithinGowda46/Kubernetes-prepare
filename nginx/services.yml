@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+  namespace: nginx
+spec:
+  selector:
+    app: nginx  #access pod with label app: nginx
+  ports:
+    - protocol: TCP
+      port: 80                   #port for the service outside the cluster
+      targetPort: 80             #port for the pod...nginx pod is listening on port 80
+  type: ClusterIP 
+  #type: ClusterIP  #service is accessible only within the cluster
+  #type: NodePort  #service is accessible outside the cluster
+  #type: LoadBalancer  #service is accessible outside the cluster and load balancer is created in cloud provider
+  #type: ExternalName  #service is accessible outside the cluster and service name is mapped to external name

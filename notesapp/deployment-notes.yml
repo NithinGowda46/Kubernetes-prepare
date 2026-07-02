@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notesapp-deployment
+  namespace: notes-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notesapp                      #access pod with label app: notesapp
+  template:                           #create pod template
+    metadata:
+      name: notesapp-pod
+      labels:
+        app: notesapp                     #label for the pod
+    spec:
+      containers:
+      - name: notesapp
+        image: trainwithshubham/notes-app-k8s
+        ports:
+        - containerPort: 8000
+          
