@@ -5,7 +5,7 @@ metadata:
   namespace: mysql
 spec:
   serviceName: "mysql-service"
-  replicas: 5
+  replicas: 4
   selector:
     matchLabels:
       app: mysql
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:latest
+        image: mysql:8
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
