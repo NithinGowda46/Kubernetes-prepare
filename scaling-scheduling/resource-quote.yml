@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: scaling-scheduling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx                      #access pod with label app: nginx
+  template:                           #create pod template
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx                     #label for the pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"                 #request for 100 milliCPU
+            memory: "128Mi"             #request for 128Mi memory
+          limits:
+            cpu: "500m"                 #limit for 500 milliCPU
+            memory: "256Mi"             #limit for 256Mi memory
+      

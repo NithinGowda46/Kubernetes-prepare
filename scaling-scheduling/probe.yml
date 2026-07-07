@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: scaling-scheduling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx                      #access pod with label app: nginx
+  template:                           #create pod template
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx                     #label for the pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        livenessProbe:                     #liveness probe configuration
+          httpGet:
+            path: /
+            port: 80
+        readinessProbe:                    #readiness probe configuration
+          httpGet:
+            path: /
+            port: 80
+        startupProbe:                      #startup probe configuration
+          httpGet:  
+            path: /
+            port: 80
