@@ -4,7 +4,7 @@ metadata:
   name: nginx-deployment
   namespace: scaling-scheduling
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: nginx                      #access pod with label app: nginx
