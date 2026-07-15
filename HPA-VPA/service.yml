@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hpa-vpa-service
+  namespace: hpa-vpa
+spec:
+  selector:
+    app: hpa-vpa
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

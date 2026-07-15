@@ -1,0 +1,27 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hpa-vpa-deployment
+  namespace: hpa-vpa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hpa-vpa
+  template:
+    metadata:
+      labels:
+        app: hpa-vpa
+    spec:
+      containers:
+        - name: hpa-vpa-container
+          image: httpd:latest
+          ports:
+          - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
