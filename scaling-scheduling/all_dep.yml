@@ -18,10 +18,10 @@ spec:
 
     spec:
 
-      nodeSelector:
+      nodeSelector:                                             #node selector to schedule pod on specific node
         disktype: ssd
 
-      affinity:
+      affinity:                                                 #node affinity to schedule pod on node with specific cpu
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
@@ -31,7 +31,7 @@ spec:
                 values:
                 - "8"
 
-      tolerations:
+      tolerations:                                               #toleration to schedule pod on node with specific taint
       - key: "env"
         operator: "Equal"
         value: "prod"
@@ -44,7 +44,7 @@ spec:
         ports:
         - containerPort: 80
 
-        resources:
+        resources:                                                #resource requests and limits for the container
           requests:
             cpu: "250m"
             memory: "256Mi"
@@ -52,14 +52,14 @@ spec:
             cpu: "500m"
             memory: "512Mi"
 
-        startupProbe:
+        startupProbe:                                              #startup probe to check if the container is started and ready to serve traffic
           httpGet:
             path: /
             port: 80
           periodSeconds: 5
           failureThreshold: 30
 
-        readinessProbe:
+        readinessProbe:                                             #readiness probe to check if the container is ready to serve traffic
           httpGet:
             path: /
             port: 80
@@ -68,7 +68,7 @@ spec:
           timeoutSeconds: 2
           failureThreshold: 3
 
-        livenessProbe:
+        livenessProbe:                                             #liveness probe to check if the container is running and healthy 
           httpGet:
             path: /
             port: 80
