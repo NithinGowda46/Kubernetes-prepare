@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: nginx-deployment
+  name: nginx-deploymen
+  namespace: scaling-scheduling
 
 spec:
-  replicas: 2
+  replicas: 3
 
   selector:
     matchLabels:
